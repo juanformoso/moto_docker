@@ -31,6 +31,6 @@ Where `boto.conf` contains the following
     [Boto]
     is_secure = False
     https_validate_certificates = False
-    proxy = moton
+    proxy = moto
     proxy_port = 5000
     
