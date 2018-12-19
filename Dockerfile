@@ -1,15 +1,22 @@
 FROM ubuntu:18.04
 
-# Upgrade installed packages
-RUN apt-get update && \
-	apt-get upgrade -y && \
-	apt-get clean
+# upgrade installed packages
+RUN apt-get update && apt-get upgrade -y && apt-get clean
 
-# Python package management and basic dependencies
+# needed for the bootstrap script
+RUN apt-get install netcat -y
+
+# python package management and basic dependencies
 RUN apt-get install -y python-setuptools python-dev python-pip
 
-RUN  pip --no-cache-dir install "moto[server]"
+# install moto server
+RUN pip --no-cache-dir install "moto[server]"
 
-ENTRYPOINT ["moto_server", "-H", "0.0.0.0"]
+# copy dependency files
+WORKDIR /moto
+COPY moto/* ./
+RUN chmod u+x /moto/bootstrap.sh
 
 EXPOSE 5000
+
+CMD ["/moto/bootstrap.sh"]

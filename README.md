@@ -11,7 +11,7 @@ Docker image hosted in https://hub.docker.com/r/juanformoso/moto_docker/
 
 ### Running AWS services using moto_docker
 
-    docker run --name moto -d -i juanformoso/moto_docker
+    docker run --name moto -p 5000:5000 -d -i juanformoso/moto_docker
 
 ### Example with docker-compose
 
@@ -36,3 +36,10 @@ Where `boto.conf` contains the following
     proxy = moto
     proxy_port = 5000
     
+### SQS initialization
+
+There's a way to initialize queues on start up, this is useful so your application does not need to check if they exist and create them itself (as it assumes the queues will be created in amazon in other environments)
+
+Just pass a comma separated list of queue names to create in the environment variable `SQS_INIT_QUEUES`
+
+    docker run --env SQS_INIT_QUEUES=queue1,queue2 --name moto -p 5000:5000 -d -i juanformoso/moto_docker
