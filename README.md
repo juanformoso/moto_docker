@@ -35,11 +35,20 @@ Where `boto.conf` contains the following
     https_validate_certificates = False
     proxy = moto
     proxy_port = 5000
-    
-### SQS initialization
 
-There's a way to initialize queues on start up, this is useful so your application does not need to check if they exist and create them itself (as it assumes the queues will be created in amazon in other environments)
+There's a way to initialize entities (queues, topics, etc) on start up, this is useful so your application doesn't need to check if they exist and create them itself (as it assumes they will be created in amazon in other environments)
+All initializations are independent and optional, so you can combine them all in the same `docker run` execution, or not use them at all.
 
-Just pass a comma separated list of queue names to create in the environment variable `SQS_INIT_QUEUES`
+The following services support initialization, if you need another one feel free to [add an issue](https://github.com/juanformoso/moto_docker/issues) and I'll add it as soon as I can.
 
-    docker run --env SQS_INIT_QUEUES=queue1,queue2 --name moto -p 5000:5000 -d -i juanformoso/moto_docker
+#### SQS initialization
+
+Pass a comma separated list of queue names to create in the environment variable `SQS_INIT_QUEUES`
+
+    docker run --env SQS_INIT_QUEUES=queue1,queue2 -p 5000:5000 -d -i juanformoso/moto_docker
+
+#### SNS initialization
+
+Pass a comma separated list of topic names to create in the environment variable `SNS_INIT_TOPICS`
+
+    docker run --env SNS_INIT_TOPICS=topic1,topic2 -p 5000:5000 -d -i juanformoso/moto_docker
