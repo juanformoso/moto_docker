@@ -52,3 +52,15 @@ Pass a comma separated list of queue names to create in the environment variable
 Pass a comma separated list of topic names to create in the environment variable `SNS_INIT_TOPICS`
 
     docker run --env SNS_INIT_TOPICS=topic1,topic2 -p 5000:5000 -d -i juanformoso/moto_docker
+
+#### Full docker-compose example with initializations
+
+    version: '3'
+
+    moto:
+      image: juanformoso/moto_docker
+      environment:
+          SQS_INIT_QUEUES: queue1,queue2
+          SNS_INIT_TOPICS: topic1,topic2
+      ports:
+        - "5000:5000"
