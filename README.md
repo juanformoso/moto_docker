@@ -1,3 +1,5 @@
+![Docker Pulls](https://img.shields.io/docker/pulls/juanformoso/moto_docker.svg)
+
 ### Summary
 
 Docker container for using moto server with ubuntu.  
