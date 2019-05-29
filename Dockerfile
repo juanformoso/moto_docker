@@ -1,13 +1,7 @@
-FROM ubuntu:18.04
-
-# upgrade installed packages
-RUN apt-get update && apt-get upgrade -y && apt-get clean
+FROM juanformoso/ubuntu_python3_base
 
 # needed for the bootstrap script
 RUN apt-get install netcat -y
-
-# python package management and basic dependencies
-RUN apt-get install -y python-setuptools python-dev python-pip
 
 # install moto server
 RUN pip --no-cache-dir install "moto[server]"
