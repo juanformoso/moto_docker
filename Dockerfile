@@ -1,4 +1,7 @@
 FROM juanformoso/ubuntu_python3_base
+LABEL maintainer="Juan Manuel Formoso <jformoso@gmail.com>"
+LABEL project="moto_docker"
+LABEL description="Docker image to use moto with ubuntu"
 
 # needed for the bootstrap script
 RUN apt-get install netcat -y
