@@ -72,5 +72,6 @@ Pass a comma separated list of queue and topic names to subscribe the first to t
       environment:
           SQS_INIT_QUEUES: queue1,queue2
           SNS_INIT_TOPICS: topic1,topic2
+          SQS_TO_SNS_SUBSCRIPTIONS: queue1@topic1,queue2@topic2
       ports:
         - "5000:5000"
