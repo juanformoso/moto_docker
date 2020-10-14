@@ -7,7 +7,7 @@ LABEL description="Docker image to use moto with ubuntu"
 RUN apt-get install netcat -y
 
 # install moto server
-RUN pip --no-cache-dir install "moto[server]"
+RUN pip --no-cache-dir install moto[server]==1.3.14
 
 # copy dependency files
 WORKDIR /moto

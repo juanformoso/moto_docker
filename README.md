@@ -55,6 +55,14 @@ Pass a comma separated list of topic names to create in the environment variable
 
     docker run --env SNS_INIT_TOPICS=topic1,topic2 -p 5000:5000 -d -i juanformoso/moto_docker
 
+
+#### SQS to SNS subscriptions
+
+Pass a comma separated list of queue and topic names to subscribe the first to the second in the environment variable `SQS_TO_SNS_SUBSCRIPTIONS`
+
+    docker run --env SQS_TO_SNS_SUBSCRIPTIONS=queue1@topic1,queue2@topic2 -p 5000:5000 -d -i juanformoso/moto_docker
+
+
 #### Full docker-compose example with initializations
 
     version: '3'
